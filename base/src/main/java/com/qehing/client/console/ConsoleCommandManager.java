@@ -8,10 +8,10 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class ConsoleCommandManager implements ConsoleCommand{
-    private Map<String, ConsoleCommand> consoleCommandMap;
+    private final Map<String, ConsoleCommand> consoleCommandMap;
 
     public ConsoleCommandManager() {
-        consoleCommandMap = new HashMap<String, ConsoleCommand>();
+        consoleCommandMap = new HashMap<>();
         consoleCommandMap.put("sendToUser", new SendToUserConsoleCommand());
         consoleCommandMap.put("logout", new LogoutConsoleCommand());
         consoleCommandMap.put("createGroup", new CreateGroupConsoleCommand());

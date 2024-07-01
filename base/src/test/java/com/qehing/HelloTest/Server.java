@@ -26,9 +26,8 @@ public class Server {
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel socketChannel) throws Exception {
-                            socketChannel.pipeline().addLast(
-                                    new ServerHandler()
-                            );
+                            socketChannel.pipeline().addLast(new ServerHandler1());
+                            socketChannel.pipeline().addLast(new ServerHandler2());
                         }
                     })
                     .option(ChannelOption.SO_BACKLOG,128)
@@ -43,10 +42,7 @@ public class Server {
 
     public static void main(String[] args) throws Exception {
         System.out.println("Server starting...");
-        int port = 8089;
-        if (args.length > 0) {
-            port = Integer.parseInt(args[0]);
-        }
+        int port = 8080;
         new Server(port).run();
     }
 }
