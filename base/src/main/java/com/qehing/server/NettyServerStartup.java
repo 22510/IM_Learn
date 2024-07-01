@@ -2,6 +2,7 @@ package com.qehing.server;
 
 public class NettyServerStartup {
     public static void main(String[] args) throws InterruptedException {
-        new Thread(() -> new NettyRemotingServer().start()).start();
+//        new Thread(() -> new NettyRemotingServer().start()).start();
+        new NettyRemotingServer().start();
     }
 }

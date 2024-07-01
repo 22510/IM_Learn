@@ -1,8 +1,8 @@
 package com.qehing.client;
 
 import com.qehing.client.handlers.*;
-import com.qehing.console.ConsoleCommandManager;
-import com.qehing.console.LoginConsoleCommand;
+import com.qehing.client.console.ConsoleCommandManager;
+import com.qehing.client.console.LoginConsoleCommand;
 import com.qehing.protocols.Judge;
 import com.qehing.protocols.PacketDecoder;
 import com.qehing.protocols.PacketEncoder;
@@ -34,17 +34,21 @@ public class NettyRemotingClient {
 //    }
 
     public void start() {
-//        System.out.println(CLIENT_PORT);
-        EventLoopGroup group = new NioEventLoopGroup();
+        EventLoopGroup group = new NioEventLoopGroup(1);
         try {
             Bootstrap bootstrap = new Bootstrap();
             bootstrap.group(group)
                     .channel(NioSocketChannel.class)
-//                    .option(ChannelOption.TCP_NODELAY, true)
+                    .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 5000)
+                    // 建立连接时，如果连接时间超过所设定的值，则抛出timeout异常
+                    .option(ChannelOption.SO_KEEPALIVE, true)
+                    // TCP会实时检测连接是否有效，当连接处于空闲超过2小时，则会发送一个包给对方，若无回应，会尝试11分钟重发；之后关闭Socket连接
+                    .option(ChannelOption.TCP_NODELAY, true)
+                    // 禁用Nagle算法：Nagle算法试图减少TCP包的数量和结构性开销，将小包组合成大包发送，受TCP延迟确认影响，会导致相继两次向连接发送请求包
                     .handler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel ch) {
-                            ChannelPipeline pipeline = ch.pipeline();
+//                            ChannelPipeline pipeline = ch.pipeline();
 //                            pipeline.addLast(new NettyRemotingClientHandler(bootstrap));
 //                            pipeline.addLast(new NettyRemotingClientHandler(bootstrap));
 //                            pipeline.addLast(new Judge());
@@ -56,9 +60,12 @@ public class NettyRemotingClient {
 //                            pipeline.addLast(new QuitGroupResponseHandler());
 //                            pipeline.addLast(new PacketEncoder());
                             // 空闲检测
-                            ch.pipeline().addLast(new IMIdleStateHandler());
+                            // 空闲检测
 
+                            ch.pipeline().addLast(new IMIdleStateHandler());
+                            // 连接所使用协议判断，非设定协议不接收通信。
                             ch.pipeline().addLast(new Judge());
+
                             ch.pipeline().addLast(new PacketDecoder());
                             // 登录响应处理器
                             ch.pipeline().addLast(new LoginResponseHandler());
@@ -159,7 +166,6 @@ public class NettyRemotingClient {
         ConsoleCommandManager consoleCommandManager = new ConsoleCommandManager();
         LoginConsoleCommand loginConsoleCommand = new LoginConsoleCommand();
         Scanner sc = new Scanner(System.in);
-
         new Thread(() -> {
 //            while (!Thread.interrupted()) {
 //                if (LoginUtil.isLogin(channel)) {
@@ -177,7 +183,7 @@ public class NettyRemotingClient {
             while (!Thread.interrupted()) {
                 if (!SessionUtil.hasLogin(channel)) {
                     System.out.println("进行登录：");
-                    loginConsoleCommand.exec(sc,channel);
+                    loginConsoleCommand.exec(sc, channel);
 //                    System.out.print("输入用户名登录: ");
 //                    String username = sc.nextLine();
 //                    loginRequestPacket.setUsername(username);
@@ -201,11 +207,11 @@ public class NettyRemotingClient {
         }).start();
     }
 
-    private static void waitForLoginResponse(){
-        try{
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
+//    private static void waitForLoginResponse() {
+//        try {
+//            Thread.sleep(1000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }

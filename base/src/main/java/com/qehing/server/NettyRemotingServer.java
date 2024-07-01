@@ -13,7 +13,7 @@ public class NettyRemotingServer {
     static final int PORT = 8686;
 
     public void start() {
-        EventLoopGroup bossGroup = new NioEventLoopGroup();
+        EventLoopGroup bossGroup = new NioEventLoopGroup(1);
         EventLoopGroup workerGroup = new NioEventLoopGroup();
 
         final ServerBootstrap bootstrap = new ServerBootstrap();

@@ -1,4 +1,4 @@
-package com.qehing.console;
+package com.qehing.client.console;
 
 import io.netty.channel.Channel;
 

@@ -1,4 +1,4 @@
-package com.qehing.console;
+package com.qehing.client.console;
 
 import com.qehing.utils.SessionUtil;
 import io.netty.channel.Channel;

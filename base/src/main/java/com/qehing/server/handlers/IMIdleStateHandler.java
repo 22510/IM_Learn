@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 public class IMIdleStateHandler extends IdleStateHandler {
 
-    private static final int READER_IDLE_TIME = 60;
+    private static final int READER_IDLE_TIME = 15;
 
     public IMIdleStateHandler() {
         super(READER_IDLE_TIME, 0, 0, TimeUnit.SECONDS);
