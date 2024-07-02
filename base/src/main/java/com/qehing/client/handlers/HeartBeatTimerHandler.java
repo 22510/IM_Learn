@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 public class HeartBeatTimerHandler extends ChannelInboundHandlerAdapter {
 
-    private static final int HEARTBEAT_INTERVAL = 5;
+    private static final int HEARTBEAT_INTERVAL = 15;
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
@@ -28,5 +28,6 @@ public class HeartBeatTimerHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         System.out.println("与服务端失去连接，正在尝试重连");
+        // TODO：与服务端断开连接重连
     }
 }

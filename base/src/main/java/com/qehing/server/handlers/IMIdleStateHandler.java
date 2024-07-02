@@ -24,4 +24,13 @@ public class IMIdleStateHandler extends IdleStateHandler {
         // 关闭该通道，减少资源消耗。
         ctx.channel().close();
     }
+
+//    @Override
+//    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+//        System.out.println("与客户端连接断开-IMIdleStateHandler");
+////        super.channelInactive(ctx);
+////        ctx.channel().close();
+//        // 事件在pipeline中按照Handler添加的顺序被处理，其中不同的事件触发handler的对应处理方法
+//        // 当事件匹配到某个handler的处理方法，但又不进行传播时，该事件只会在pipeline处理一次。
+//    }
 }
