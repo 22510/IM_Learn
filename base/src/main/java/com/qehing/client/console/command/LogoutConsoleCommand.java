@@ -1,4 +1,4 @@
-package com.qehing.client.console;
+package com.qehing.client.console.command;
 
 import com.qehing.protocols.request.LogoutRequestPacket;
 import io.netty.channel.Channel;

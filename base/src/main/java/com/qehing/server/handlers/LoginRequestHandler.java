@@ -32,8 +32,6 @@ public class LoginRequestHandler extends SimpleChannelInboundHandler<LoginReques
             String userId = randomUserId();
             loginResponsePacket.setUserId(userId);
             System.out.println(new Date() +":"+loginRequestPacket.getUsername()+": 登录成功!");
-//            System.out.println("通道为："+ctx.channel());
-//            LoginUtil.markLogin(ctx.channel());
             SessionUtil.bindSession(new Session(userId, loginRequestPacket.getUsername()), ctx.channel());
         } else {
             loginResponsePacket.setReason("账号密码校验失败");
@@ -53,6 +51,7 @@ public class LoginRequestHandler extends SimpleChannelInboundHandler<LoginReques
     }
 
     private boolean valid(LoginRequestPacket loginRequestPacket) {
+        // TODO:验证应经过数据库
         return true;
     }
 

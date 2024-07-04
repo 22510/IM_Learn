@@ -1,13 +1,11 @@
 package com.qehing.client;
 
+import com.qehing.client.console.state.Context;
 import com.qehing.client.handlers.*;
-import com.qehing.client.console.ConsoleCommandManager;
-import com.qehing.client.console.LoginConsoleCommand;
 import com.qehing.protocols.Judge;
 import com.qehing.protocols.PacketDecoder;
 import com.qehing.protocols.PacketEncoder;
 import com.qehing.server.handlers.IMIdleStateHandler;
-import com.qehing.utils.SessionUtil;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -163,9 +161,8 @@ public class NettyRemotingClient {
     }
 
     private static void startConsoleThread(Channel channel) {
-        ConsoleCommandManager consoleCommandManager = new ConsoleCommandManager();
-        LoginConsoleCommand loginConsoleCommand = new LoginConsoleCommand();
-        Scanner sc = new Scanner(System.in);
+//        ConsoleCommandManager consoleCommandManager = new ConsoleCommandManager();
+//        LoginConsoleCommand loginConsoleCommand = new LoginConsoleCommand();
         new Thread(() -> {
 //            while (!Thread.interrupted()) {
 //                if (LoginUtil.isLogin(channel)) {
@@ -180,30 +177,37 @@ public class NettyRemotingClient {
 //                    channel.writeAndFlush(packet);
 //                }
 //            }
-            while (!Thread.interrupted()) {
-                if (!SessionUtil.hasLogin(channel)) {
-                    System.out.println("进行登录：");
-                    loginConsoleCommand.exec(sc, channel);
-//                    System.out.print("输入用户名登录: ");
-//                    String username = sc.nextLine();
-//                    loginRequestPacket.setUsername(username);
-//
-//                    // 密码使用默认的
-//                    loginRequestPacket.setPassword("pwd");
-//
-//                    // 发送登录数据包
-//                    channel.writeAndFlush(loginRequestPacket);
-//                    waitForLoginResponse();
-                } else {
-//                    System.out.println("输入对方id");
-//                    String toUserId = sc.next();
-//                    System.out.println("输入信息");
-//                    String message = sc.next();
-//                    channel.writeAndFlush(new MessageRequestPacket(toUserId, message));
-//                    System.out.println("消息发送成功");
-                    consoleCommandManager.exec(sc, channel);
-                }
+            Scanner sc = new Scanner(System.in);
+            Context context = new Context(channel);
+            while (!Thread.interrupted() && context.isRunning()) {
+                context.show();
+                System.out.print("IM_SYS> ");
+                context.handlerExec(sc);
+//                if (!SessionUtil.hasLogin(channel)) {
+//                    System.out.println("进行登录：");
+//                    loginConsoleCommand.exec(sc, channel);
+////                    System.out.print("输入用户名登录: ");
+////                    String username = sc.nextLine();
+////                    loginRequestPacket.setUsername(username);
+////
+////                    // 密码使用默认的
+////                    loginRequestPacket.setPassword("pwd");
+////
+////                    // 发送登录数据包
+////                    channel.writeAndFlush(loginRequestPacket);
+////                    waitForLoginResponse();
+//                } else {
+////                    System.out.println("输入对方id");
+////                    String toUserId = sc.next();
+////                    System.out.println("输入信息");
+////                    String message = sc.next();
+////                    channel.writeAndFlush(new MessageRequestPacket(toUserId, message));
+////                    System.out.println("消息发送成功");
+//                    consoleCommandManager.exec(sc, channel);
+//                }
             }
+            sc.close();
+            System.out.println(">< Goodbye!");
         }).start();
     }
 
