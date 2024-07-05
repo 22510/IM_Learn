@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--名称空间要与Mapper接口对应-->
+<mapper namespace="com.qehing.dbService.mapper.TestDaoMapper">
+    <insert id="addTest" useGeneratedKeys="true" keyProperty="id">
+        insert into test_mybatis(id,name,password,test_id) values(#{id}, #{name}, #{password}, #{testId})
+    </insert>
+    <delete id="deleteTest">
+        delete from test_mybatis where name=#{name}
+    </delete>
+    <select id="selectTest" resultType="com.qehing.dbService.dao.TestDao">
+        select * from test_mybatis where id =#{id}
+    </select>
+</mapper>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--名称空间要与Mapper接口对应-->
+<mapper namespace="com.qehing.dbService.mapper.UserMapper">
+    <insert id="insertUser">
+        insert into users(user_id, username, email, password) values(#{userId}, #{userName}, #{email}, #{password})
+    </insert>
+    <select id="selectAll" resultType="com.qehing.dbService.dao.User">
+        select * from users;
+    </select>
+    <select id="selectById" resultType="com.qehing.dbService.dao.User">
+        select * from users where user_id=#{id};
+    </select>
+    <select id="selectByEmail" resultType="com.qehing.dbService.dao.User">
+        select * from users where email=#{email};
+    </select>
+</mapper>
