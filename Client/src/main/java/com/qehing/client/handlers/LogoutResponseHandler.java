@@ -10,6 +10,6 @@ public class LogoutResponseHandler extends SimpleChannelInboundHandler<LogoutRes
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, LogoutResponsePacket logoutResponsePacket) {
-        SessionUtil.unbindSession(ctx.channel());
+//        SessionUtil.unbindSession(ctx.channel());
     }
 }

@@ -16,7 +16,6 @@ public class RegisterMenuState implements State, ConsoleCommand {
 
     public RegisterMenuState() {
         stateMap = new HashMap<>();
-
         stateMap.put("login", LoginMenuState.INSTANCE);
         stateMap.put("back", BeginMenuState.INSTANCE);
     }
@@ -26,7 +25,7 @@ public class RegisterMenuState implements State, ConsoleCommand {
         System.out.println("---IM_SYS<Register>Menu---");
         System.out.println("Sure to Register:{sure}");
         System.out.println("Login your account:{login}");
-        System.out.println("Back to Main menu:{back}");
+        System.out.println("Back to Begin menu:{back}");
         System.out.println("Exit:{exit}");
     }
 
@@ -36,7 +35,6 @@ public class RegisterMenuState implements State, ConsoleCommand {
         if (input.equals("exit")) {
             context.exit();
         }
-
         State nextState = stateMap.get(input);
         if (nextState != null) {
             context.setState(nextState);
@@ -52,6 +50,8 @@ public class RegisterMenuState implements State, ConsoleCommand {
     @Override
     public void exec(Scanner scanner, Channel channel) {
         RegisterRequestPacket registerRequestPacket = new RegisterRequestPacket();
+        System.out.print(">UserName: ");
+        registerRequestPacket.setUserName(scanner.next());
         System.out.print(">UserEmail: ");
         registerRequestPacket.setEmail(scanner.next());
         System.out.print(">Password: ");
@@ -66,6 +66,7 @@ public class RegisterMenuState implements State, ConsoleCommand {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException ignored) {
+
         }
     }
 }

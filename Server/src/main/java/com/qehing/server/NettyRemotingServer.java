@@ -37,6 +37,7 @@ public class NettyRemotingServer {
 //                                          pipeline.addLast(new PacketDecoder());
                                           pipeline.addLast(PacketCodecHandler.INSTANCE);
                                           pipeline.addLast(LoginRequestHandler.INSTANCE);
+                                          pipeline.addLast(RegisterRequestHandler.INSTANCE);
                                           pipeline.addLast(HeartBeatRequestHandler.INSTANCE);
                                           pipeline.addLast(AuthHandler.INSTANCE);
                                           pipeline.addLast(IMHandler.INSTANCE);

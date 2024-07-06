@@ -1,13 +1,14 @@
 package com.qehing.server.handlers;
 
-import com.qehing.protocols.request.ListGroupMembersRequestPacket;
-import com.qehing.protocols.response.ListGroupMembersResponsePacket;
-import com.qehing.session.Session;
+
 import com.qehing.utils.SessionUtil;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.group.ChannelGroup;
+import protocols.request.ListGroupMembersRequestPacket;
+import protocols.response.ListGroupMembersResponsePacket;
+import session.Session;
 
 import java.util.ArrayList;
 import java.util.List;

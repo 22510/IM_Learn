@@ -5,15 +5,15 @@ import lombok.Data;
 @Data
 public class Session {
     private String userId;
-    private String userName;
+    private String email;
 
-    public Session(String userId, String userName) {
+    public Session(String userId, String email) {
         this.userId = userId;
-        this.userName = userName;
+        this.email = email;
     }
 
     @Override
     public String toString() {
-        return "Session [userId=" + userId + ", userName=" + userName + "]";
+        return "Session [userId=" + userId + ", email=" + email + "]";
     }
 }

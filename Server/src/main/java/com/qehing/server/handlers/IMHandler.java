@@ -16,7 +16,7 @@ import static protocols.command.Command.*;
 public class IMHandler extends SimpleChannelInboundHandler<Packet> {
     public static final IMHandler INSTANCE = new IMHandler();
 
-    private Map<Byte, SimpleChannelInboundHandler<? extends Packet>> handlerMap;
+    private final Map<Byte, SimpleChannelInboundHandler<? extends Packet>> handlerMap;
 
     private IMHandler() {
         handlerMap = new HashMap<>();

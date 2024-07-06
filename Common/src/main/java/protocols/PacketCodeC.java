@@ -39,6 +39,8 @@ public class PacketCodeC {
         packetTypeMap.put(HEARTBEAT_RESPONSE, HeartBeatResponsePacket.class);
         packetTypeMap.put(LOGOUT_REQUEST, LogoutRequestPacket.class);
         packetTypeMap.put(LOGOUT_RESPONSE, LogoutResponsePacket.class);
+        packetTypeMap.put(REGISTER_REQUEST, RegisterRequestPacket.class);
+        packetTypeMap.put(REGISTER_RESPONSE, RegisterResponsePacket.class);
 
         Serializer serializer = (Serializer) new JSONSerializer();
         serializeMap.put(serializer.getSerializerAlg(), serializer);

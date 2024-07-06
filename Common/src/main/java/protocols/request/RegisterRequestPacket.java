@@ -7,6 +7,7 @@ import protocols.command.Command;
 @Data
 public class RegisterRequestPacket extends Packet {
 
+    private String userName;
     private String email;
     private String password;
 

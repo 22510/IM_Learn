@@ -1,11 +1,12 @@
 package com.qehing.server.handlers;
 
-import com.qehing.protocols.request.JoinGroupRequestPacket;
-import com.qehing.protocols.response.JoinGroupResponsePacket;
+
 import com.qehing.utils.SessionUtil;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.group.ChannelGroup;
+import protocols.request.JoinGroupRequestPacket;
+import protocols.response.JoinGroupResponsePacket;
 
 public class JoinGroupRequestHandler extends SimpleChannelInboundHandler<JoinGroupRequestPacket> {
     public static final JoinGroupRequestHandler INSTANCE = new JoinGroupRequestHandler();

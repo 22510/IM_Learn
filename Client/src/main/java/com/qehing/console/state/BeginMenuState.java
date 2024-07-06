@@ -20,7 +20,7 @@ public class BeginMenuState implements State {
 
     @Override
     public void show() {
-        System.out.println("---IM_SYS<Main>Menu---");
+        System.out.println("---IM_SYS<Begin>Menu---");
         System.out.println("Login your account:{login}");
         System.out.println("Register your account:{register}");
         System.out.println("Get some help:{help}");

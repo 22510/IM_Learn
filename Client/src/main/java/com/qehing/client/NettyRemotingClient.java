@@ -68,6 +68,8 @@ public class NettyRemotingClient {
                             ch.pipeline().addLast(new PacketDecoder());
                             // 登录响应处理器
                             ch.pipeline().addLast(new LoginResponseHandler());
+                            // 注册响应处理器
+                            ch.pipeline().addLast(new RegisterResponseHandler());
                             // 收消息处理器
                             ch.pipeline().addLast(new MessageResponseHandler());
                             // 创建群响应处理器
@@ -181,17 +183,13 @@ public class NettyRemotingClient {
             Scanner sc = new Scanner(System.in);
             Context context = new Context(channel);
             while (!Thread.interrupted() && context.isRunning()) {
-                if (!ClientConstant.IS_LOGIN){
+                if (!ClientConstant.IS_LOGIN && !context.getState().getClass().getSimpleName().equals("RegisterMenuState")){
                     // 如果没登录，则进入登录状态
-                    context.setState(LoginMenuState.INSTANCE);
-                }else {
-                    // 如果已登录，则进入用户页面
                     context.setState(LoginMenuState.INSTANCE);
                 }
                 context.show();
                 System.out.print("IM_SYS> ");
                 context.handlerExec(sc);
-
 //                if (!SessionUtil.hasLogin(channel)) {
 //                    System.out.println("进行登录：");
 //                    loginConsoleCommand.exec(sc, channel);

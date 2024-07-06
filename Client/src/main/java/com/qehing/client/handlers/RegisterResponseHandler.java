@@ -1,14 +1,11 @@
 package com.qehing.client.handlers;
 
 
-import com.qehing.client.ClientConstant;
-import com.qehing.utils.SessionUtil;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
-import protocols.response.LoginResponsePacket;
-import session.Session;
+import protocols.response.RegisterResponsePacket;
 
-public class LoginResponseHandler extends SimpleChannelInboundHandler<LoginResponsePacket> {
+public class RegisterResponseHandler extends SimpleChannelInboundHandler<RegisterResponsePacket> {
 
 //    @Override
 //    public void channelActive(ChannelHandlerContext ctx) {
@@ -23,17 +20,14 @@ public class LoginResponseHandler extends SimpleChannelInboundHandler<LoginRespo
 //    }
 
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, LoginResponsePacket loginResponsePacket) throws Exception {
-        String userId = loginResponsePacket.getUserId();
-        String userName = loginResponsePacket.getEmail();
+    protected void channelRead0(ChannelHandlerContext ctx, RegisterResponsePacket registerResponsePacket) throws Exception {
+        String userEmail = registerResponsePacket.getEmail();
 
-        if (loginResponsePacket.isSuccess()) {
-            System.out.println("[" + userName + "]登录成功，userId 为: " + loginResponsePacket.getUserId());
-//            SessionUtil.bindSession(new Session(userId, userName), ctx.channel());
-            ClientConstant.IS_LOGIN = true;
+        if (registerResponsePacket.isSuccess()) {
+            System.out.println("[" + userEmail + "]注册成功");
             // TODO：不使用SessionUtil来缓存登录状态
         } else {
-            System.out.println("[" + userName + "]登录失败，原因：" + loginResponsePacket.getReason());
+            System.out.println("[" + userEmail + "]注册失败，原因：" + registerResponsePacket.getReason());
         }
 
 //        if (){

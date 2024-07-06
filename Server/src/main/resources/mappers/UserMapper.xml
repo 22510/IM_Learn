@@ -4,8 +4,8 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--名称空间要与Mapper接口对应-->
 <mapper namespace="com.qehing.dbService.mapper.UserMapper">
-    <insert id="insertUser">
-        insert into users(user_id, username, email, password) values(#{userId}, #{userName}, #{email}, #{password})
+    <insert id="insertUser" useGeneratedKeys="true" keyProperty="userId">
+        insert into users(username, email, password) values(#{username}, #{email}, #{password})
     </insert>
     <select id="selectAll" resultType="com.qehing.dbService.dao.User">
         select * from users;

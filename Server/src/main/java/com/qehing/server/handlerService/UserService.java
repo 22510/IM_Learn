@@ -15,7 +15,7 @@ public class UserService {
 
         SqlSession sqlSession = MyBatisInit.getSqlSession().openSession(true);
         try {
-            return sqlSession.getMapper(UserMapper.class).insertUser(user);
+            return sqlSession.getMapper(UserMapper.class).insertUser(user) != 0 ;
         } catch (Exception e) {
             sqlSession.rollback();
             e.printStackTrace();

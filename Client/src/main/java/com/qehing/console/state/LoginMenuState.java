@@ -34,6 +34,7 @@ public class LoginMenuState implements State, ConsoleCommand {
         String input = scanner.next();
         if (input.equals("exit")) {
             context.exit();
+            return;
         }
 
         State nextState = stateMap.get(input);

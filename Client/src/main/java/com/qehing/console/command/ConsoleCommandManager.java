@@ -1,6 +1,6 @@
 package com.qehing.console.command;
 
-import com.qehing.utils.SessionUtil;
+import com.qehing.client.ClientConstant;
 import io.netty.channel.Channel;
 
 import java.util.HashMap;
@@ -25,7 +25,8 @@ public class ConsoleCommandManager implements ConsoleCommand {
     public void exec(Scanner scanner, Channel channel) {
         String command = scanner.next();
 
-        if (!SessionUtil.hasLogin(channel)) {
+//        if (!SessionUtil.hasLogin(channel)) {
+        if (!ClientConstant.IS_LOGIN) {
             return;
         }
 
