@@ -1,14 +1,15 @@
 package com.qehing.server.handlers;
 
-import com.qehing.protocols.Packet;
+
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
+import protocols.Packet;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.qehing.protocols.command.Command.*;
+import static protocols.command.Command.*;
 
 
 @ChannelHandler.Sharable

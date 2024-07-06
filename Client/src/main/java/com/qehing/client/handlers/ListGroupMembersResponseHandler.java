@@ -1,9 +1,9 @@
 package com.qehing.client.handlers;
 
-import com.qehing.protocols.response.ListGroupMembersResponsePacket;
+
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
-
+import protocols.response.ListGroupMembersResponsePacket;
 
 public class ListGroupMembersResponseHandler extends SimpleChannelInboundHandler<ListGroupMembersResponsePacket> {
 

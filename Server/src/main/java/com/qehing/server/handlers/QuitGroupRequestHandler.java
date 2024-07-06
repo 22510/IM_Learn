@@ -1,11 +1,12 @@
 package com.qehing.server.handlers;
 
-import com.qehing.protocols.request.QuitGroupRequestPacket;
-import com.qehing.protocols.response.QuitGroupResponsePacket;
+
 import com.qehing.utils.SessionUtil;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.group.ChannelGroup;
+import protocols.request.QuitGroupRequestPacket;
+import protocols.response.QuitGroupResponsePacket;
 
 public class QuitGroupRequestHandler extends SimpleChannelInboundHandler<QuitGroupRequestPacket> {
 

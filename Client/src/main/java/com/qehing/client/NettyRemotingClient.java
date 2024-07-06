@@ -1,15 +1,16 @@
 package com.qehing.client;
 
-import com.qehing.client.console.state.Context;
 import com.qehing.client.handlers.*;
-import com.qehing.protocols.Judge;
-import com.qehing.protocols.PacketDecoder;
-import com.qehing.protocols.PacketEncoder;
+import com.qehing.console.state.Context;
+import com.qehing.console.state.LoginMenuState;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import protocols.Judge;
+import protocols.PacketDecoder;
+import protocols.PacketEncoder;
 
 import java.util.Date;
 import java.util.Scanner;
@@ -31,6 +32,7 @@ public class NettyRemotingClient {
 //    }
 
     public void start() {
+        ClientConstant.IS_LOGIN = false;
         EventLoopGroup group = new NioEventLoopGroup(1);
         try {
             Bootstrap bootstrap = new Bootstrap();
@@ -179,9 +181,17 @@ public class NettyRemotingClient {
             Scanner sc = new Scanner(System.in);
             Context context = new Context(channel);
             while (!Thread.interrupted() && context.isRunning()) {
+                if (!ClientConstant.IS_LOGIN){
+                    // 如果没登录，则进入登录状态
+                    context.setState(LoginMenuState.INSTANCE);
+                }else {
+                    // 如果已登录，则进入用户页面
+                    context.setState(LoginMenuState.INSTANCE);
+                }
                 context.show();
                 System.out.print("IM_SYS> ");
                 context.handlerExec(sc);
+
 //                if (!SessionUtil.hasLogin(channel)) {
 //                    System.out.println("进行登录：");
 //                    loginConsoleCommand.exec(sc, channel);

@@ -1,8 +1,9 @@
 package com.qehing.client.handlers;
 
-import com.qehing.protocols.request.HeartBeatRequestPacket;
+
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import protocols.request.HeartBeatRequestPacket;
 
 import java.util.concurrent.TimeUnit;
 

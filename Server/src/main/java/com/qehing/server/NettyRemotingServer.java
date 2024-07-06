@@ -1,7 +1,5 @@
 package com.qehing.server;
 
-import com.qehing.protocols.Judge;
-import com.qehing.protocols.PacketCodecHandler;
 import com.qehing.server.handlerService.ThreadPoolManager;
 import com.qehing.server.handlers.*;
 import io.netty.bootstrap.ServerBootstrap;
@@ -9,6 +7,8 @@ import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import protocols.Judge;
+import protocols.PacketCodecHandler;
 
 public class NettyRemotingServer {
     static final int PORT = 8686;

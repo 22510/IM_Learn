@@ -1,8 +1,9 @@
 package com.qehing.client.handlers;
 
-import com.qehing.protocols.response.JoinGroupResponsePacket;
+
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
+import protocols.response.JoinGroupResponsePacket;
 
 public class JoinGroupResponseHandler extends SimpleChannelInboundHandler<JoinGroupResponsePacket> {
     @Override

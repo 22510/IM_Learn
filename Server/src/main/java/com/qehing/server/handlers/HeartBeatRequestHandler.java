@@ -1,11 +1,11 @@
 package com.qehing.server.handlers;
 
-import com.qehing.protocols.request.HeartBeatRequestPacket;
-import com.qehing.protocols.response.HeartBeatResponsePacket;
+
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
-
+import protocols.request.HeartBeatRequestPacket;
+import protocols.response.HeartBeatResponsePacket;
 
 @ChannelHandler.Sharable
 public class HeartBeatRequestHandler extends SimpleChannelInboundHandler<HeartBeatRequestPacket> {

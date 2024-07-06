@@ -1,11 +1,11 @@
 package com.qehing.server.handlers;
 
-import com.qehing.protocols.response.GroupMessageResponsePacket;
-import com.qehing.protocols.request.GroupMessageRequestPacket;
 import com.qehing.utils.SessionUtil;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.group.ChannelGroup;
+import protocols.request.GroupMessageRequestPacket;
+import protocols.response.GroupMessageResponsePacket;
 
 public class GroupMessageRequestHandler extends SimpleChannelInboundHandler<GroupMessageRequestPacket> {
 

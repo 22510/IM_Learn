@@ -1,8 +1,9 @@
 package com.qehing.client.handlers;
 
-import com.qehing.protocols.response.MessageResponsePacket;
+
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
+import protocols.response.MessageResponsePacket;
 
 import java.util.Date;
 

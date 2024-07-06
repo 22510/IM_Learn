@@ -1,10 +1,12 @@
 package com.qehing.client.handlers;
 
-import com.qehing.protocols.response.LoginResponsePacket;
-import com.qehing.session.Session;
+
+import com.qehing.client.ClientConstant;
 import com.qehing.utils.SessionUtil;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
+import protocols.response.LoginResponsePacket;
+import session.Session;
 
 public class LoginResponseHandler extends SimpleChannelInboundHandler<LoginResponsePacket> {
 
@@ -28,6 +30,7 @@ public class LoginResponseHandler extends SimpleChannelInboundHandler<LoginRespo
         if (loginResponsePacket.isSuccess()) {
             System.out.println("[" + userName + "]登录成功，userId 为: " + loginResponsePacket.getUserId());
             SessionUtil.bindSession(new Session(userId, userName), ctx.channel());
+            ClientConstant.IS_LOGIN = true;
             // TODO：不使用SessionUtil来缓存登录状态
         } else {
             System.out.println("[" + userName + "]登录失败，原因：" + loginResponsePacket.getReason());

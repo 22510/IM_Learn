@@ -1,9 +1,9 @@
 package com.qehing.server.handlers;
 
-import com.qehing.protocols.request.LogoutRequestPacket;
 import com.qehing.utils.SessionUtil;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
+import protocols.request.LogoutRequestPacket;
 
 public class LogoutRequestHandler extends SimpleChannelInboundHandler<LogoutRequestPacket> {
 
