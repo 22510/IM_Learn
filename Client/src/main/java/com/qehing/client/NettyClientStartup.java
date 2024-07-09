@@ -5,5 +5,6 @@ public class NettyClientStartup {
 //        new Thread(() -> new NettyRemotingClient().start()).start();
         new NettyRemotingClient().start();
         System.out.println("test merger dev");
+        System.out.println("test merger: dev wait for feature");
     }
 }
