@@ -14,7 +14,7 @@ public class IMIdleStateHandler extends IdleStateHandler {
         // 读空闲时间、写空闲时间、所有类型的空闲时间、时间单位
         super(READER_IDLE_TIME, 0, 0, TimeUnit.SECONDS);
     }
-//111
+
     /**
      * 当通道空闲时触发
      */
