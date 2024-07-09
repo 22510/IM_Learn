@@ -60,14 +60,15 @@ public class LoginRequestHandler extends SimpleChannelInboundHandler<LoginReques
 //        ctx.writeAndFlush(loginResponsePacket);
         threadPoolExecutor.submit(() -> {
             try {
-                boolean valid = valid(loginRequestPacket);
+                long userId = valid(loginRequestPacket);
                 LoginResponsePacket loginResponsePacket = new LoginResponsePacket();
                 loginResponsePacket.setVersion(loginRequestPacket.getVersion());
                 loginResponsePacket.setEmail(loginRequestPacket.getEmail());
-                if (valid) {
-                    String userId = randomUserId();
+                if (userId != 0) {
+//                    String userId = randomUserId();
+
                     loginResponsePacket.setUserId(userId);
-                    // TODO: 登录状态缓存Redis
+                    // TODO: 登录状态缓存Redis，似乎不必要了，反正也只是缓存一个用户email与channel的映射关系。
                     loginResponsePacket.setSuccess(true);
                     System.out.println(new Date() + ":" + loginRequestPacket.getEmail() + ": 登录成功!");
                     SessionUtil.bindSession(new Session(userId, loginRequestPacket.getEmail()), ctx.channel());
@@ -90,10 +91,11 @@ public class LoginRequestHandler extends SimpleChannelInboundHandler<LoginReques
         SessionUtil.unbindSession(ctx.channel());
     }
 
-    private boolean valid(LoginRequestPacket loginRequestPacket) {
+    private Long valid(LoginRequestPacket loginRequestPacket) {
         String email = loginRequestPacket.getEmail();
         User user = UserService.getUser(email);
-        return user != null && user.getPassword().equals(loginRequestPacket.getPassword());
+//        return user != null && user.getPassword().equals(loginRequestPacket.getPassword());
+        return user.getUserId();
     }
 
     private static String randomUserId() {

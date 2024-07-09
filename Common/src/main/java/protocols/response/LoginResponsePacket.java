@@ -8,7 +8,7 @@ import static protocols.command.Command.LOGIN_RESPONSE;
 
 @Data
 public class LoginResponsePacket extends Packet {
-    private String userId;
+    private Long userId;
 
     private String email;
 

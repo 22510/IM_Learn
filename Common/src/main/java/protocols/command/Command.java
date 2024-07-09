@@ -65,4 +65,11 @@ public interface Command {
     Byte REGISTER_REQUEST = 19;
 
     Byte REGISTER_RESPONSE = 20;
+
+
+    Byte ADD_FRIEND_REQUEST = 21;
+
+    Byte ADD_FRIEND_RESPONSE = 22;
+
+
 }

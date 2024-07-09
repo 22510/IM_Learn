@@ -4,10 +4,10 @@ import lombok.Data;
 
 @Data
 public class Session {
-    private String userId;
+    private Long userId;
     private String email;
 
-    public Session(String userId, String email) {
+    public Session(Long userId, String email) {
         this.userId = userId;
         this.email = email;
     }

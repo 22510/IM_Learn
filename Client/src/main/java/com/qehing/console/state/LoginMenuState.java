@@ -42,7 +42,7 @@ public class LoginMenuState implements State, ConsoleCommand {
             context.setState(nextState);
         } else if (input.equals("sure")){
             exec(scanner, context.getChannel());
-            context.setState(LoginMenuState.INSTANCE);
+            context.setState(MainMenuState.INSTANCE);
         } else {
             System.err.println("Invalid input");
         }
@@ -65,7 +65,7 @@ public class LoginMenuState implements State, ConsoleCommand {
 
     private static void waitForLoginResponse() {
         try {
-            Thread.sleep(1000);
+            Thread.sleep(2000);
         } catch (InterruptedException ignored) {
         }
     }

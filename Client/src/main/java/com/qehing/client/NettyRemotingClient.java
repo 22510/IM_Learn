@@ -184,7 +184,7 @@ public class NettyRemotingClient {
             Context context = new Context(channel);
             while (!Thread.interrupted() && context.isRunning()) {
                 if (!ClientConstant.IS_LOGIN && !context.getState().getClass().getSimpleName().equals("RegisterMenuState")){
-                    // 如果没登录，则进入登录状态
+                    // 如果没登录，且下个状态不为注册，则进入登录状态
                     context.setState(LoginMenuState.INSTANCE);
                 }
                 context.show();

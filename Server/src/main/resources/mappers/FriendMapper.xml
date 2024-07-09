@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--名称空间要与Mapper接口对应-->
+<mapper namespace="com.qehing.dbService.mapper.FriendMapper">
+
+    <insert id="insertFriend" >
+        insert into friends(user_id, friend_id, apply) value(#{userId}, #{friendId}, #{apply})
+    </insert>
+    <delete id="deleteFriend">
+        delete from friends where (user_id=#{userId} and friend_id=#{friendId}) or (user_id=#{friendId} and friend_id=#{userId})
+    </delete>
+    <select id="getFriends" resultType="com.qehing.dbService.dao.Friend">
+        select * from friends where user_id=#{userId} or friend_id#{userId}
+    </select>
+</mapper>

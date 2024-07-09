@@ -12,17 +12,18 @@ public class MainMenuState implements State {
 
     private MainMenuState() {
         stateMap = new HashMap<>();
-        stateMap.put("login", LoginMenuState.INSTANCE);
-        stateMap.put("register", RegisterMenuState.INSTANCE);
-        stateMap.put("help", HelpMenuState.INSTANCE);
+
     }
 
     @Override
     public void show() {
         System.out.println("---IM_SYS<Main>Menu---");
-        System.out.println("Login your account:{login}");
-        System.out.println("Register your account:{register}");
-        System.out.println("Get some help:{help}");
+        System.out.println("Add friend:{add_friend}");
+        System.out.println("My friends:{friends}");
+        System.out.println("Send message to friend:{send2friend}");
+        System.out.println("Add groups:{add_group}");
+        System.out.println("My groups:{groups}");
+        System.out.println("Send message to group:{send2group}");
         System.out.println("Exit:{exit}");
     }
 

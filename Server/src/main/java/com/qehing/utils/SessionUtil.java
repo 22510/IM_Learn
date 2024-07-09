@@ -14,14 +14,14 @@ public class SessionUtil {
 
     public static void bindSession(Session sessionId, Channel channel) {
 //        System.out.println("保存用户["+sessionId.getUserId()+"]channel");
-        userIdChannelMap.put(sessionId.getUserId(), channel);
+        userIdChannelMap.put(sessionId.getEmail(), channel);
         channel.attr(Attributes.SESSION).set(sessionId);
     }
 
     public static void unbindSession(Channel channel) {
         if (hasLogin(channel)){
             Session session = getSession(channel);
-            userIdChannelMap.remove(session.getUserId());
+            userIdChannelMap.remove(session.getEmail());
             channel.attr(Attributes.SESSION).set(null);
             System.out.println(session + " 退出登录");
         }
@@ -35,8 +35,8 @@ public class SessionUtil {
         return channel.attr(Attributes.SESSION).get();
     }
 
-    public static Channel getChannel(String userId) {
-        return userIdChannelMap.get(userId);
+    public static Channel getChannel(String userEmail) {
+        return userIdChannelMap.get(userEmail);
     }
 
     public static void bindGroupSession(String groupId, ChannelGroup channelGroup) {

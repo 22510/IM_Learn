@@ -23,7 +23,7 @@ public class MessageRequestHandler extends SimpleChannelInboundHandler<MessageRe
 
         MessageResponsePacket messageResponsePacket = new MessageResponsePacket();
         messageResponsePacket.setFromUserId(session.getUserId());
-        messageResponsePacket.setFromUserName(session.getUserName());
+        messageResponsePacket.setFromUserName(session.getEmail());
         messageResponsePacket.setVersion(messageRequestPacket.getVersion());
         messageResponsePacket.setMessage(messageRequestPacket.getMessage());
 
